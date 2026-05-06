@@ -72,8 +72,8 @@ async function fetchStripeStatus(order: Order) {
   stripeStatus[id] = { status: "", loading: true, error: null };
 
   try {
-    const base = (import.meta.env.BASE_URL as string ?? "/").replace(/\/$/, "");
-    const res = await fetch(`${base}/api/payments/status/${id}`);
+    const res = await fetch(`/api/payments/status/${id}`);
+
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = (await res.json()) as { status: string };
     stripeStatus[id] = { status: data.status, loading: false, error: null };

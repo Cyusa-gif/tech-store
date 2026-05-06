@@ -63,8 +63,8 @@ async function fetchStripeStatus(piId: string, force = false) {
   if (!force && (stripeStatus[piId]?.status || stripeStatus[piId]?.loading)) return;
   stripeStatus[piId] = { status: "", loading: true, error: null };
   try {
-    const base = (import.meta.env.BASE_URL as string ?? "/").replace(/\/$/, "");
-    const res = await fetch(`${base}/api/payments/status/${piId}`);
+    const res = await fetch(`/api/payments/status/${piId}`);
+
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = (await res.json()) as { status: string };
     stripeStatus[piId] = { status: data.status, loading: false, error: null };

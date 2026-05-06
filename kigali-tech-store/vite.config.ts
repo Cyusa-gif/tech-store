@@ -17,13 +17,15 @@ export default defineConfig({
     port: 5173,
     host: true,
     proxy: {
-      // Forward all /api/* requests to the Express backend
+      // Local dev: forward /api/* to the local Express server.
+      // Production: calls are same-origin and handled by Vercel API routes.
       "/api": {
         target: "http://localhost:3001",
         changeOrigin: true,
       },
     },
   },
+
   preview: {
     port: 4173,
     host: true,

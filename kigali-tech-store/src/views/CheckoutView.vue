@@ -127,12 +127,9 @@ onBeforeUnmount(() => {
  * The backend charges the cart total in RWF (a zero-decimal Stripe currency).
  */
 async function createPaymentIntent(orderId: string): Promise<string> {
-  const apiBaseEnv = (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? "";
-  // Prefer VITE_API_BASE_URL so we can point to the deployed backend.
-  // Fallback to BASE_URL for local/dev setups.
-  const base = apiBaseEnv || (import.meta.env.BASE_URL ?? "/");
-  const apiBase = base.endsWith("/") ? base.slice(0, -1) : base;
-  const url = `${apiBase}/api/payments/create-payment-intent`.replace(/\/+/g, "/");
+  // Vercel-friendly: call same-origin backend routes.
+  const url = `/api/payments/create-payment-intent`;
+
 
   // Helps debug “Could not reach the payment server” in production.
   console.log("[payments] createPaymentIntent url:", url);

@@ -12,6 +12,9 @@
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "@stripe/stripe-js": "^4.10.0",
     "axios": "^1.7.9",
