@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# env secrets
+.env
+.env.local
+.env.*.local
+
+# build outputs
+/dist
+
+# misc
+.DS_Store
+*.log
+.vite
